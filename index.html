@@ -112,15 +112,15 @@
 <body>
     <div class="container">
         <h1 class="title">THOTH OF HOUSE</h1>
-        <p class="subtitle">토트의 집 - 세계 오컬트 아카이브</p>
+        <p class="subtitle" data-i18n="subtitle">토트의 집 - 세계 오컬트 아카이브</p>
         
         <div class="nav-grid">
-            <a href="wiki.html?category=asia" class="nav-item">아시아 오컬트</a>
-            <a href="wiki.html?category=europe" class="nav-item">유럽 오컬트</a>
-            <a href="wiki.html?category=americas" class="nav-item">아메리카 오컬트</a>
-            <a href="wiki.html?category=africa" class="nav-item">아프리카/중동</a>
-            <a href="wiki.html?category=myths" class="nav-item">신화/전설</a>
-            <a href="wiki.html?category=magic" class="nav-item">마법 체계</a>
+            <a href="wiki.html?category=asia" class="nav-item" data-i18n="nav-asia">아시아 오컬트</a>
+            <a href="wiki.html?category=europe" class="nav-item" data-i18n="nav-europe">유럽 오컬트</a>
+            <a href="wiki.html?category=americas" class="nav-item" data-i18n="nav-americas">아메리카 오컬트</a>
+            <a href="wiki.html?category=africa" class="nav-item" data-i18n="nav-africa">아프리카/중동</a>
+            <a href="wiki.html?category=myths" class="nav-item" data-i18n="nav-myths">신화/전설</a>
+            <a href="wiki.html?category=magic" class="nav-item" data-i18n="nav-magic">마법 체계</a>
         </div>
 
         <div class="lang-switch">
@@ -132,16 +132,44 @@
     </div>
 
     <script>
-        // 언어 전환
-        let currentLang = 'ko';
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentLang = this.dataset.lang;
-                console.log('Language switched to:', currentLang);
-            });
-        });
-    </script>
-</body>
-</html>
+        // 번역 데이터
+        const translations = {
+            ko: {
+                subtitle: "토트의 집 - 세계 오컬트 아카이브",
+                "nav-asia": "아시아 오컬트",
+                "nav-europe": "유럽 오컬트",
+                "nav-americas": "아메리카 오컬트",
+                "nav-africa": "아프리카/중동",
+                "nav-myths": "신화/전설",
+                "nav-magic": "마법 체계"
+            },
+            en: {
+                subtitle: "Thoth of House - World Occult Archive",
+                "nav-asia": "Asian Occult",
+                "nav-europe": "European Occult",
+                "nav-americas": "American Occult",
+                "nav-africa": "African/Middle Eastern",
+                "nav-myths": "Myths & Legends",
+                "nav-magic": "Magic Systems"
+            },
+            ja: {
+                subtitle: "トトの家 - 世界オカルトアーカイブ",
+                "nav-asia": "アジアのオカルト",
+                "nav-europe": "ヨーロッパのオカルト",
+                "nav-americas": "アメリカのオカルト",
+                "nav-africa": "アフリカ/中東",
+                "nav-myths": "神話と伝説",
+                "nav-magic": "魔法体系"
+            },
+            zh: {
+                subtitle: "托特之家 - 世界神秘学档案馆",
+                "nav-asia": "亚洲神秘学",
+                "nav-europe": "欧洲神秘学",
+                "nav-americas": "美洲神秘学",
+                "nav-africa": "非洲/中东",
+                "nav-myths": "神话传说",
+                "nav-magic": "魔法体系"
+            }
+        };
+
+        let currentLa
