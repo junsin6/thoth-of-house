@@ -1,2 +1,2 @@
 # thoth-of-house
-World Occult Wiki Archive
+Occult Wiki Archive
