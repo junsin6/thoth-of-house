@@ -126,9 +126,15 @@
             opacity: 0.8;
         }
 
+        .sidebar-list li.active {
+            border-left-color: #EFEFEF;
+            font-weight: bold;
+        }
+
         .sidebar-list li a {
             color: #EFEFEF;
             text-decoration: none;
+            display: block;
         }
 
         .content {
@@ -253,22 +259,25 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-title" data-i18n="sidebar-asia">아시아 오컬트</div>
+                <div class="sidebar-title" data-i18n="sidebar-category">카테고리</div>
                 <ul class="sidebar-list">
-                    <li><a href="wiki.html" data-i18n="asia-korea">한국 민간신앙</a></li>
-                    <li><a href="japan-yokai.html" data-i18n="asia-japan" style="font-weight: bold;">일본 요괴학</a></li>
-                    <li><a href="china-taoism.html" data-i18n="asia-china">중국 도교</a></li>
-                    <li><a href="#" data-i18n="asia-tibet">티베트 밀교</a></li>
-                    <li><a href="#" data-i18n="asia-india">인도 탄트라</a></li>
+                    <li class="active"><a href="wiki.html" data-i18n="cat-asia">아시아 오컬트</a></li>
+                    <li><a href="europe-magic.html" data-i18n="cat-europe">유럽 오컬트</a></li>
+                    <li><a href="#" data-i18n="cat-americas">아메리카 오컬트</a></li>
+                    <li><a href="#" data-i18n="cat-africa">아프리카/중동</a></li>
+                    <li><a href="#" data-i18n="cat-myths">신화/전설</a></li>
+                    <li><a href="#" data-i18n="cat-magic">마법 체계</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-title" data-i18n="sidebar-europe">유럽 오컬트</div>
+                <div class="sidebar-title" data-i18n="sidebar-asia">아시아 세부</div>
                 <ul class="sidebar-list">
-                    <li><a href="europe-magic.html" data-i18n="europe-magic">서양 마법학</a></li>
-                    <li><a href="#" data-i18n="europe-alchemy">연금술</a></li>
-                    <li><a href="#" data-i18n="europe-witch">마녀학</a></li>
+                    <li><a href="wiki.html" data-i18n="asia-korea">한국 민간신앙</a></li>
+                    <li class="active"><a href="japan-yokai.html" data-i18n="asia-japan">일본 요괴학</a></li>
+                    <li><a href="china-taoism.html" data-i18n="asia-china">중국 도교</a></li>
+                    <li><a href="#" data-i18n="asia-tibet">티베트 밀교</a></li>
+                    <li><a href="#" data-i18n="asia-india">인도 탄트라</a></li>
                 </ul>
             </div>
         </aside>
@@ -298,9 +307,7 @@
                 </ul>
             </div>
 
-            <div class="wiki-content" id="wiki-content">
-                <!-- 콘텐츠는 JavaScript로 로드 -->
-            </div>
+            <div class="wiki-content" id="wiki-content"></div>
 
             <footer>
                 <p data-i18n="footer-title">Thoth of House - 세계 오컬트 아카이브</p>
@@ -313,16 +320,19 @@
         const translations = {
             ko: {
                 "search-placeholder": "검색어를 입력하세요...",
-                "sidebar-asia": "아시아 오컬트",
-                "sidebar-europe": "유럽 오컬트",
+                "sidebar-category": "카테고리",
+                "sidebar-asia": "아시아 세부",
+                "cat-asia": "아시아 오컬트",
+                "cat-europe": "유럽 오컬트",
+                "cat-americas": "아메리카 오컬트",
+                "cat-africa": "아프리카/중동",
+                "cat-myths": "신화/전설",
+                "cat-magic": "마법 체계",
                 "asia-korea": "한국 민간신앙",
                 "asia-japan": "일본 요괴학",
                 "asia-china": "중국 도교",
                 "asia-tibet": "티베트 밀교",
                 "asia-india": "인도 탄트라",
-                "europe-magic": "서양 마법학",
-                "europe-alchemy": "연금술",
-                "europe-witch": "마녀학",
                 "breadcrumb-home": "홈",
                 "breadcrumb-asia": "아시아 오컬트",
                 "breadcrumb-japan": "일본 요괴학",
@@ -341,16 +351,19 @@
             },
             en: {
                 "search-placeholder": "Enter search terms...",
-                "sidebar-asia": "Asian Occult",
-                "sidebar-europe": "European Occult",
+                "sidebar-category": "Categories",
+                "sidebar-asia": "Asian Subcategories",
+                "cat-asia": "Asian Occult",
+                "cat-europe": "European Occult",
+                "cat-americas": "American Occult",
+                "cat-africa": "African/Middle Eastern",
+                "cat-myths": "Myths & Legends",
+                "cat-magic": "Magic Systems",
                 "asia-korea": "Korean Folk Religion",
                 "asia-japan": "Japanese Yokai Studies",
                 "asia-china": "Chinese Taoism",
                 "asia-tibet": "Tibetan Tantra",
                 "asia-india": "Indian Tantra",
-                "europe-magic": "Western Magic",
-                "europe-alchemy": "Alchemy",
-                "europe-witch": "Witchcraft",
                 "breadcrumb-home": "Home",
                 "breadcrumb-asia": "Asian Occult",
                 "breadcrumb-japan": "Japanese Yokai Studies",
@@ -369,16 +382,19 @@
             },
             ja: {
                 "search-placeholder": "検索語を入力してください...",
-                "sidebar-asia": "アジアのオカルト",
-                "sidebar-europe": "ヨーロッパのオカルト",
+                "sidebar-category": "カテゴリー",
+                "sidebar-asia": "アジアの詳細",
+                "cat-asia": "アジアのオカルト",
+                "cat-europe": "ヨーロッパのオカルト",
+                "cat-americas": "アメリカのオカルト",
+                "cat-africa": "アフリカ/中東",
+                "cat-myths": "神話と伝説",
+                "cat-magic": "魔法体系",
                 "asia-korea": "韓国の民間信仰",
                 "asia-japan": "日本の妖怪学",
                 "asia-china": "中国の道教",
                 "asia-tibet": "チベット密教",
                 "asia-india": "インドのタントラ",
-                "europe-magic": "西洋魔法学",
-                "europe-alchemy": "錬金術",
-                "europe-witch": "魔女学",
                 "breadcrumb-home": "ホーム",
                 "breadcrumb-asia": "アジアのオカルト",
                 "breadcrumb-japan": "日本の妖怪学",
@@ -397,16 +413,19 @@
             },
             zh: {
                 "search-placeholder": "输入搜索词...",
-                "sidebar-asia": "亚洲神秘学",
-                "sidebar-europe": "欧洲神秘学",
+                "sidebar-category": "分类",
+                "sidebar-asia": "亚洲细分",
+                "cat-asia": "亚洲神秘学",
+                "cat-europe": "欧洲神秘学",
+                "cat-americas": "美洲神秘学",
+                "cat-africa": "非洲/中东",
+                "cat-myths": "神话传说",
+                "cat-magic": "魔法体系",
                 "asia-korea": "韩国民间信仰",
                 "asia-japan": "日本妖怪学",
                 "asia-china": "中国道教",
                 "asia-tibet": "西藏密宗",
                 "asia-india": "印度坦特罗",
-                "europe-magic": "西方魔法学",
-                "europe-alchemy": "炼金术",
-                "europe-witch": "巫术学",
                 "breadcrumb-home": "首页",
                 "breadcrumb-asia": "亚洲神秘学",
                 "breadcrumb-japan": "日本妖怪学",
@@ -430,19 +449,10 @@
                 <h2 id="overview">개요</h2>
                 <p>일본 요괴학(妖怪学, Yōkaigaku)은 일본의 전통적인 초자연적 존재인 요괴(妖怪)를 학문적으로 연구하는 분야이다. 요괴는 일본 문화와 민속신앙에 깊이 뿌리내린 존재로, 신(神)과 인간 사이의 중간적 존재로 인식된다.</p>
                 
-                <p>요괴는 자연 현상의 의인화, 동물의 변신, 인간의 원념이 구체화된 것 등 다양한 형태로 나타난다. 에도 시대(1603-1868)에 요괴 연구와 묘사가 절정에 달했으며, 현대에는 대중문화의 중요한 소재가 되었다.</p>
-
                 <h2 id="history">역사</h2>
-                <p>요괴에 대한 기록은 헤이안 시대(794-1185)로 거슬러 올라간다. 이 시기의 문학 작품인 『겐지 이야기』와 『헤이케 이야기』에는 다양한 요괴와 귀신이 등장한다.</p>
-
-                <h3>에도 시대의 요괴 붐</h3>
-                <p>에도 시대에는 요괴가 대중문화의 중심이 되었다. 토리야마 세키엔(鳥山石燕)이 편찬한 『화도백귀야행(画図百鬼夜行)』(1776)은 요괴를 체계적으로 분류하고 그림으로 표현한 대표적인 작품이다.</p>
-
-                <h3>근현대의 요괴학</h3>
-                <p>민속학자 야나기타 구니오(柳田國男)와 미즈키 시게루(水木しげる)는 현대 요괴학의 기초를 확립했다. 미즈키 시게루는 만화 『게게게의 키타로』를 통해 요괴를 대중화했다.</p>
+                <p>요괴에 대한 기록은 헤이안 시대(794-1185)로 거슬러 올라간다. 에도 시대에는 토리야마 세키엔(鳥山石燕)이 편찬한 『화도백귀야행(画図百鬼夜行)』(1776)이 요괴를 체계적으로 분류했다.</p>
 
                 <h2 id="classification">분류</h2>
-                
                 <h3>자연계 요괴</h3>
                 <ul>
                     <li><strong>텐구(天狗):</strong> 산에 사는 새 같은 모습의 요괴</li>
@@ -457,151 +467,76 @@
                     <li><strong>바케네코(化け猫):</strong> 고양이 요괴</li>
                 </ul>
 
-                <h3>인공물 요괴 (쓰쿠모가미)</h3>
-                <ul>
-                    <li><strong>가라카사코조(唐傘小僧):</strong> 우산 요괴</li>
-                    <li><strong>카라카네(鐘):</strong> 종 요괴</li>
-                </ul>
-
                 <h2 id="famous">유명한 요괴</h2>
-                
                 <h3>오니(鬼)</h3>
                 <p>일본 요괴의 대표격. 뿔과 곤봉을 가진 거대한 인간형 요괴로, 지옥의 옥졸로도 알려져 있다.</p>
 
                 <h3>키츠네(狐)</h3>
-                <p>가장 인기 있는 요괴 중 하나. 지혜롭고 마법을 사용하며, 사람으로 변신할 수 있다. 특히 아름다운 여성으로 변신하는 이야기가 많다.</p>
-
-                <h3>카파(河童)</h3>
-                <p>물에 사는 요괴로, 머리에 접시가 있으며 그 접시에 물이 있어야 힘을 유지한다. 오이를 좋아한다는 전설이 있다.</p>
+                <p>가장 인기 있는 요괴 중 하나. 지혜롭고 마법을 사용하며, 사람으로 변신할 수 있다.</p>
 
                 <h2 id="modern">현대의 요괴학</h2>
                 <p>현대 일본에서 요괴는 만화, 애니메이션, 게임의 주요 소재가 되었다. 『포켓몬스터』, 『요괴워치』, 『이누야샤』 등이 대표적이다.</p>
-
-                <p>학문적으로는 민속학, 인류학, 종교학의 관점에서 요괴 연구가 계속되고 있으며, 요괴가 일본 문화와 사회심리에 미친 영향을 분석하고 있다.</p>
-
-                <h3>참고문헌</h3>
-                <ul>
-                    <li>柳田國男, 『妖怪談義』, 筑摩書房, 1956</li>
-                    <li>水木しげる, 『妖怪大百科』, 講談社, 1994</li>
-                    <li>小松和彦, 『妖怪学新考』, 小学館, 1994</li>
-                </ul>
             `,
             en: `
                 <h2 id="overview">Overview</h2>
-                <p>Japanese Yokai Studies (妖怪学, Yōkaigaku) is the academic field that studies yokai, supernatural entities in Japanese tradition. Yokai are deeply rooted in Japanese culture and folk beliefs, recognized as intermediate beings between gods and humans.</p>
+                <p>Japanese Yokai Studies (妖怪学, Yōkaigaku) is the academic field that studies yokai, supernatural entities in Japanese tradition.</p>
                 
-                <p>Yokai appear in various forms: personifications of natural phenomena, animal transformations, and materialized human grudges. Yokai research and depiction peaked during the Edo period (1603-1868), and today they are an important element of popular culture.</p>
-
                 <h2 id="history">History</h2>
-                <p>Records of yokai date back to the Heian period (794-1185). Literary works from this era, such as "The Tale of Genji" and "The Tale of the Heike," feature various yokai and spirits.</p>
-
-                <h3>Yokai Boom in the Edo Period</h3>
-                <p>During the Edo period, yokai became central to popular culture. "The Illustrated Night Parade of A Hundred Demons" (画図百鬼夜行, 1776) by Toriyama Sekien systematically classified and illustrated yokai.</p>
+                <p>Records of yokai date back to the Heian period (794-1185). During the Edo period, "The Illustrated Night Parade of A Hundred Demons" (1776) systematically classified yokai.</p>
 
                 <h2 id="classification">Classification</h2>
-                
-                <h3>Nature Yokai</h3>
                 <ul>
-                    <li><strong>Tengu (天狗):</strong> Bird-like yokai living in mountains</li>
-                    <li><strong>Kappa (河童):</strong> Turtle-like water yokai</li>
-                    <li><strong>Yuki-onna (雪女):</strong> Snow spirit</li>
-                </ul>
-
-                <h3>Animal Transformation Yokai</h3>
-                <ul>
-                    <li><strong>Kitsune (狐):</strong> Fox yokai with excellent shapeshifting abilities</li>
-                    <li><strong>Tanuki (狸):</strong> Raccoon dog yokai</li>
-                    <li><strong>Bakeneko (化け猫):</strong> Cat yokai</li>
+                    <li><strong>Tengu:</strong> Bird-like yokai living in mountains</li>
+                    <li><strong>Kappa:</strong> Turtle-like water yokai</li>
+                    <li><strong>Kitsune:</strong> Fox yokai with shapeshifting abilities</li>
                 </ul>
 
                 <h2 id="famous">Famous Yokai</h2>
-                
-                <h3>Oni (鬼)</h3>
-                <p>Representative Japanese yokai. Giant humanoid demons with horns and clubs, also known as wardens of hell.</p>
-
-                <h3>Kitsune (狐)</h3>
-                <p>One of the most popular yokai. Wise and magical, able to transform into humans, especially beautiful women.</p>
+                <p><strong>Oni:</strong> Representative Japanese yokai with horns and clubs.</p>
+                <p><strong>Kitsune:</strong> One of the most popular yokai, able to transform into humans.</p>
 
                 <h2 id="modern">Modern Yokai Studies</h2>
-                <p>In modern Japan, yokai have become major subjects in manga, anime, and games. "Pokémon," "Yo-kai Watch," and "Inuyasha" are representative examples.</p>
+                <p>Yokai have become major subjects in manga, anime, and games like Pokémon and Yo-kai Watch.</p>
             `,
             ja: `
                 <h2 id="overview">概要</h2>
-                <p>日本の妖怪学(妖怪学、Yōkaigaku)は、日本の伝統的な超自然的存在である妖怪を学術的に研究する分野です。妖怪は日本文化と民俗信仰に深く根ざした存在で、神と人間の中間的存在として認識されています。</p>
+                <p>日本の妖怪学(妖怪学、Yōkaigaku)は、日本の伝統的な超自然的存在である妖怪を学術的に研究する分野です。</p>
                 
-                <p>妖怪は自然現象の擬人化、動物の変身、人間の怨念が具体化したものなど、様々な形で現れます。江戸時代(1603-1868)に妖怪研究と描写が頂点に達し、現代では大衆文化の重要な素材となっています。</p>
-
                 <h2 id="history">歴史</h2>
-                <p>妖怪に関する記録は平安時代(794-1185)にさかのぼります。この時期の文学作品である『源氏物語』と『平家物語』には様々な妖怪と鬼神が登場します。</p>
-
-                <h3>江戸時代の妖怪ブーム</h3>
-                <p>江戸時代には妖怪が大衆文化の中心となりました。鳥山石燕が編纂した『画図百鬼夜行』(1776)は妖怪を体系的に分類し、絵で表現した代表的な作品です。</p>
+                <p>妖怪に関する記録は平安時代(794-1185)にさかのぼります。</p>
 
                 <h2 id="classification">分類</h2>
-                
-                <h3>自然系妖怪</h3>
                 <ul>
-                    <li><strong>天狗(てんぐ):</strong> 山に住む鳥のような妖怪</li>
-                    <li><strong>河童(かっぱ):</strong> 水に住む亀のような妖怪</li>
-                    <li><strong>雪女(ゆきおんな):</strong> 雪の精霊</li>
-                </ul>
-
-                <h3>動物変化妖怪</h3>
-                <ul>
-                    <li><strong>狐(きつね):</strong> 変身能力に優れた妖怪</li>
-                    <li><strong>狸(たぬき):</strong> タヌキ妖怪</li>
-                    <li><strong>化け猫(ばけねこ):</strong> 猫妖怪</li>
+                    <li><strong>天狗:</strong> 山に住む鳥のような妖怪</li>
+                    <li><strong>河童:</strong> 水に住む亀のような妖怪</li>
+                    <li><strong>狐:</strong> 変身能力に優れた妖怪</li>
                 </ul>
 
                 <h2 id="famous">有名な妖怪</h2>
-                
-                <h3>鬼(おに)</h3>
-                <p>日本妖怪の代表格。角と金棒を持つ巨大な人型妖怪で、地獄の獄卒としても知られています。</p>
-
-                <h3>狐(きつね)</h3>
-                <p>最も人気のある妖怪の一つ。賢く魔法を使い、人間に変身できます。特に美しい女性に変身する話が多いです。</p>
+                <p><strong>鬼:</strong> 角と金棒を持つ巨大な人型妖怪。</p>
 
                 <h2 id="modern">現代の妖怪学</h2>
-                <p>現代日本では妖怪が漫画、アニメ、ゲームの主要素材となっています。『ポケットモンスター』、『妖怪ウォッチ』、『犬夜叉』などが代表的です。</p>
+                <p>現代では『ポケットモンスター』や『妖怪ウォッチ』などに登場します。</p>
             `,
             zh: `
                 <h2 id="overview">概述</h2>
-                <p>日本妖怪学(妖怪学、Yōkaigaku)是从学术角度研究日本传统超自然存在——妖怪的领域。妖怪深深植根于日本文化和民间信仰,被认为是神与人之间的中间存在。</p>
+                <p>日本妖怪学(妖怪学、Yōkaigaku)是从学术角度研究日本传统超自然存在——妖怪的领域。</p>
                 
-                <p>妖怪以各种形式出现:自然现象的拟人化、动物的变身、人类怨念的具体化等。妖怪研究和描绘在江户时代(1603-1868)达到顶峰,如今已成为流行文化的重要素材。</p>
-
                 <h2 id="history">历史</h2>
-                <p>关于妖怪的记录可以追溯到平安时代(794-1185)。这一时期的文学作品《源氏物语》和《平家物语》中出现了各种妖怪和鬼神。</p>
-
-                <h3>江户时代的妖怪热潮</h3>
-                <p>在江户时代,妖怪成为大众文化的中心。鸟山石燕编纂的《画图百鬼夜行》(1776)是系统分类并用图画表现妖怪的代表作品。</p>
+                <p>关于妖怪的记录可以追溯到平安时代(794-1185)。</p>
 
                 <h2 id="classification">分类</h2>
-                
-                <h3>自然系妖怪</h3>
                 <ul>
                     <li><strong>天狗:</strong> 住在山里的鸟形妖怪</li>
                     <li><strong>河童:</strong> 住在水中的龟形妖怪</li>
-                    <li><strong>雪女:</strong> 雪之精灵</li>
-                </ul>
-
-                <h3>动物变化妖怪</h3>
-                <ul>
                     <li><strong>狐:</strong> 变身能力出众的妖怪</li>
-                    <li><strong>狸:</strong> 狸猫妖怪</li>
-                    <li><strong>化猫:</strong> 猫妖</li>
                 </ul>
 
                 <h2 id="famous">著名妖怪</h2>
-                
-                <h3>鬼</h3>
-                <p>日本妖怪的代表。拥有角和狼牙棒的巨大人形妖怪,也被称为地狱的狱卒。</p>
-
-                <h3>狐</h3>
-                <p>最受欢迎的妖怪之一。聪明且会使用魔法,能变身为人类,尤其是美丽的女性。</p>
+                <p><strong>鬼:</strong> 拥有角和狼牙棒的巨大人形妖怪。</p>
 
                 <h2 id="modern">现代妖怪学</h2>
-                <p>在现代日本,妖怪成为漫画、动画和游戏的主要题材。《精灵宝可梦》、《妖怪手表》、《犬夜叉》等都是代表性作品。</p>
+                <p>妖怪成为《精灵宝可梦》和《妖怪手表》等作品的题材。</p>
             `
         };
 
