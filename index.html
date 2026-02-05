@@ -15,53 +15,55 @@
             background-color: #343434;
             color: #EFEFEF;
             font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        #container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-        }
-
-        .gravity-element {
-            position: absolute;
-            cursor: grab;
-            user-select: none;
-            transition: all 0.3s ease;
-        }
-
-        .gravity-element:hover {
-            filter: brightness(1.2);
-        }
-
-        .gravity-element:active {
-            cursor: grabbing;
+        .container {
+            max-width: 800px;
+            text-align: center;
         }
 
         .title {
             font-size: 72px;
             font-weight: bold;
             letter-spacing: 3px;
+            margin-bottom: 20px;
         }
 
         .subtitle {
             font-size: 24px;
             opacity: 0.8;
+            margin-bottom: 60px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
         }
 
         .nav-item {
-            font-size: 20px;
-            padding: 15px 30px;
+            font-size: 18px;
+            padding: 20px 30px;
             border: 2px solid #EFEFEF;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            text-decoration: none;
+            color: #EFEFEF;
+            display: block;
         }
 
         .nav-item:hover {
             background-color: #EFEFEF;
             color: #343434;
+            transform: translateY(-2px);
         }
 
         .lang-switch {
@@ -69,180 +71,77 @@
             padding: 10px 20px;
             border: 1px solid #EFEFEF;
             border-radius: 3px;
+            display: inline-flex;
+            gap: 10px;
         }
 
-        #instructions {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #EFEFEF;
+            cursor: pointer;
             font-size: 14px;
-            opacity: 0.6;
-            text-align: center;
-            pointer-events: none;
+            padding: 5px 10px;
+            transition: all 0.3s;
         }
 
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
+        .lang-btn:hover {
+            opacity: 0.7;
+        }
+
+        .lang-btn.active {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 48px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <div class="gravity-element title" style="left: 50%; top: 20%; transform: translateX(-50%);">
-            THOTH OF HOUSE
-        </div>
-        <div class="gravity-element subtitle" style="left: 50%; top: 35%; transform: translateX(-50%);">
-            토트의 집 - 세계 오컬트 아카이브
-        </div>
+    <div class="container">
+        <h1 class="title">THOTH OF HOUSE</h1>
+        <p class="subtitle">토트의 집 - 세계 오컬트 아카이브</p>
         
-        <div class="gravity-element nav-item" style="left: 30%; top: 50%;" onclick="goToWiki('asia')">
-            아시아 오컬트
-        </div>
-        <div class="gravity-element nav-item" style="left: 50%; top: 50%; transform: translateX(-50%);" onclick="goToWiki('europe')">
-            유럽 오컬트
-        </div>
-        <div class="gravity-element nav-item" style="left: 60%; top: 50%;" onclick="goToWiki('americas')">
-            아메리카 오컬트
-        </div>
-        <div class="gravity-element nav-item" style="left: 40%; top: 65%;" onclick="goToWiki('africa')">
-            아프리카/중동
-        </div>
-        <div class="gravity-element nav-item" style="left: 55%; top: 65%;" onclick="goToWiki('myths')">
-            신화/전설
+        <div class="nav-grid">
+            <a href="wiki.html?category=asia" class="nav-item">아시아 오컬트</a>
+            <a href="wiki.html?category=europe" class="nav-item">유럽 오컬트</a>
+            <a href="wiki.html?category=americas" class="nav-item">아메리카 오컬트</a>
+            <a href="wiki.html?category=africa" class="nav-item">아프리카/중동</a>
+            <a href="wiki.html?category=myths" class="nav-item">신화/전설</a>
+            <a href="wiki.html?category=magic" class="nav-item">마법 체계</a>
         </div>
 
-        <div class="gravity-element lang-switch" style="right: 30px; top: 30px;" onclick="switchLang()">
-            한국어 | EN | 日本語 | 中文
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="ko">한국어</button>
+            <button class="lang-btn" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+            <button class="lang-btn" data-lang="zh">中文</button>
         </div>
-    </div>
-
-    <div id="instructions">
-        클릭하고 드래그하여 요소들을 던져보세요 | Click and drag to throw elements
     </div>
 
     <script>
-        // 중력 시뮬레이션
-        class GravityElement {
-            constructor(element) {
-                this.element = element;
-                this.x = parseFloat(element.style.left) || 0;
-                this.y = parseFloat(element.style.top) || 0;
-                this.vx = 0;
-                this.vy = 0;
-                this.isDragging = false;
-                this.lastMouseX = 0;
-                this.lastMouseY = 0;
-                
-                this.init();
-            }
-
-            init() {
-                this.element.addEventListener('mousedown', (e) => this.startDrag(e));
-                document.addEventListener('mousemove', (e) => this.drag(e));
-                document.addEventListener('mouseup', () => this.endDrag());
-            }
-
-            startDrag(e) {
-                this.isDragging = true;
-                this.lastMouseX = e.clientX;
-                this.lastMouseY = e.clientY;
-                this.vx = 0;
-                this.vy = 0;
-            }
-
-            drag(e) {
-                if (!this.isDragging) return;
-
-                const dx = e.clientX - this.lastMouseX;
-                const dy = e.clientY - this.lastMouseY;
-
-                this.vx = dx;
-                this.vy = dy;
-
-                this.x = e.clientX - this.element.offsetWidth / 2;
-                this.y = e.clientY - this.element.offsetHeight / 2;
-
-                this.element.style.left = this.x + 'px';
-                this.element.style.top = this.y + 'px';
-
-                this.lastMouseX = e.clientX;
-                this.lastMouseY = e.clientY;
-            }
-
-            endDrag() {
-                this.isDragging = false;
-            }
-
-            update() {
-                if (this.isDragging) return;
-
-                // 중력 적용
-                this.vy += 0.5;
-
-                // 속도 적용
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // 바닥 충돌
-                const maxY = window.innerHeight - this.element.offsetHeight;
-                if (this.y > maxY) {
-                    this.y = maxY;
-                    this.vy *= -0.7; // 반발력
-                    this.vx *= 0.95; // 마찰
-                }
-
-                // 천장 충돌
-                if (this.y < 0) {
-                    this.y = 0;
-                    this.vy *= -0.7;
-                }
-
-                // 좌우 벽 충돌
-                const maxX = window.innerWidth - this.element.offsetWidth;
-                if (this.x < 0) {
-                    this.x = 0;
-                    this.vx *= -0.7;
-                } else if (this.x > maxX) {
-                    this.x = maxX;
-                    this.vx *= -0.7;
-                }
-
-                // 마찰력
-                this.vx *= 0.99;
-
-                // 위치 업데이트
-                this.element.style.left = this.x + 'px';
-                this.element.style.top = this.y + 'px';
-            }
-        }
-
-        // 모든 요소에 중력 적용
-        const elements = document.querySelectorAll('.gravity-element');
-        const gravityElements = Array.from(elements).map(el => new GravityElement(el));
-
-        function animate() {
-            gravityElements.forEach(el => el.update());
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        // 네비게이션 함수
-        function goToWiki(category) {
-            window.location.href = `wiki.html?category=${category}`;
-        }
-
-        // 언어 전환 (추후 구현)
+        // 언어 전환
         let currentLang = 'ko';
-        function switchLang() {
-            const langs = ['ko', 'en', 'ja', 'zh'];
-            const currentIndex = langs.indexOf(currentLang);
-            currentLang = langs[(currentIndex + 1) % langs.length];
-            console.log('Language switched to:', currentLang);
-            // 추후 실제 번역 기능 추가
-        }
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentLang = this.dataset.lang;
+                console.log('Language switched to:', currentLang);
+            });
+        });
     </script>
 </body>
 </html>
