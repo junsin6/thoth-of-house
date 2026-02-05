@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중국 도교 - Thoth of House</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #343434;
+            color: #EFEFEF;
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #343434;
+            border-bottom: 2px solid #EFEFEF;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 40px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #343434;
+            border: 1px solid #EFEFEF;
+            color: #EFEFEF;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 15px;
+            background-color: transparent;
+            border: 1px solid #EFEFEF;
+            color: #EFEFEF;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background-color: #EFEFEF;
+            color: #343434;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #EFEFEF;
+        }
+
+        .sidebar-list {
+            list-style: none;
+        }
+
+        .sidebar-list li {
+            padding: 8px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 2px solid transparent;
+            padding-left: 10px;
+        }
+
+        .sidebar-list li:hover {
+            border-left-color: #EFEFEF;
+            opacity: 0.8;
+        }
+
+        .sidebar-list li a {
+            color: #EFEFEF;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        .breadcrumb a {
+            color: #EFEFEF;
+            text-decoration: none;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #EFEFEF;
+        }
+
+        .page-info {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-bottom: 30px;
+        }
+
+        .wiki-content {
+            font-size: 16px;
+        }
+
+        .wiki-content h2 {
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #555;
+        }
+
+        .wiki-content h3 {
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        .wiki-content p {
+            margin-bottom: 15px;
+        }
+
+        .wiki-content ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .wiki-content li {
+            margin-bottom: 8px;
+        }
+
+        .toc {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .toc-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: #EFEFEF;
+        }
+
+        footer {
+            border-top: 1px solid #555;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo" onclick="location.href='index.html'">THOTH OF HOUSE</div>
+            <div class="search-box">
+                <input type="text" placeholder="검색어를 입력하세요..." data-i18n-placeholder="search-placeholder">
+            </div>
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="ko">한국어</button>
+                <button class="lang-btn" data-lang="en">English</button>
+                <button class="lang-btn" data-lang="ja">日本語</button>
+                <button class="lang-btn" data-lang="zh">中文</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title" data-i18n="sidebar-asia">아시아 오컬트</div>
+                <ul class="sidebar-list">
+                    <li><a href="wiki.html" data-i18n="asia-korea">한국 민간신앙</a></li>
+                    <li><a href="japan-yokai.html" data-i18n="asia-japan">일본 요괴학</a></li>
+                    <li><a href="china-taoism.html" data-i18n="asia-china" style="font-weight: bold;">중국 도교</a></li>
+                    <li><a href="#" data-i18n="asia-tibet">티베트 밀교</a></li>
+                    <li><a href="#" data-i18n="asia-india">인도 탄트라</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" data-i18n="sidebar-europe">유럽 오컬트</div>
+                <ul class="sidebar-list">
+                    <li><a href="europe-magic.html" data-i18n="europe-magic">서양 마법학</a></li>
+                    <li><a href="#" data-i18n="europe-alchemy">연금술</a></li>
+                    <li><a href="#" data-i18n="europe-witch">마녀학</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="breadcrumb">
+                <a href="index.html" data-i18n="breadcrumb-home">홈</a> > 
+                <a href="#" data-i18n="breadcrumb-asia">아시아 오컬트</a> > 
+                <span data-i18n="breadcrumb-china">중국 도교</span>
+            </div>
+
+            <h1 class="page-title" data-i18n="page-title">중국 도교 (道教)</h1>
+            <div class="page-info">
+                <span data-i18n="page-modified">최종 수정</span>: 2024-01-22 | 
+                <span data-i18n="page-category">카테고리</span>: 
+                <span data-i18n="page-category-value">아시아 오컬트</span>
+            </div>
+
+            <div class="toc">
+                <div class="toc-title" data-i18n="toc-title">목차</div>
+                <ul>
+                    <li><a href="#overview" data-i18n="toc-overview">1. 개요</a></li>
+                    <li><a href="#history" data-i18n="toc-history">2. 역사</a></li>
+                    <li><a href="#beliefs" data-i18n="toc-beliefs">3. 핵심 사상</a></li>
+                    <li><a href="#practices" data-i18n="toc-practices">4. 수행법</a></li>
+                    <li><a href="#deities" data-i18n="toc-deities">5. 주요 신선</a></li>
+                </ul>
+            </div>
+
+            <div class="wiki-content" id="wiki-content">
+                <!-- 콘텐츠는 JavaScript로 로드 -->
+            </div>
+
+            <footer>
+                <p data-i18n="footer-title">Thoth of House - 세계 오컬트 아카이브</p>
+                <p data-i18n="footer-desc">모든 내용은 학술적 목적으로 제공됩니다.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        const translations = {
+            ko: {
+                "search-placeholder": "검색어를 입력하세요...",
+                "sidebar-asia": "아시아 오컬트",
+                "sidebar-europe": "유럽 오컬트",
+                "asia-korea": "한국 민간신앙",
+                "asia-japan": "일본 요괴학",
+                "asia-china": "중국 도교",
+                "asia-tibet": "티베트 밀교",
+                "asia-india": "인도 탄트라",
+                "europe-magic": "서양 마법학",
+                "europe-alchemy": "연금술",
+                "europe-witch": "마녀학",
+                "breadcrumb-home": "홈",
+                "breadcrumb-asia": "아시아 오컬트",
+                "breadcrumb-china": "중국 도교",
+                "page-title": "중국 도교 (道教)",
+                "page-modified": "최종 수정",
+                "page-category": "카테고리",
+                "page-category-value": "아시아 오컬트",
+                "toc-title": "목차",
+                "toc-overview": "1. 개요",
+                "toc-history": "2. 역사",
+                "toc-beliefs": "3. 핵심 사상",
+                "toc-practices": "4. 수행법",
+                "toc-deities": "5. 주요 신선",
+                "footer-title": "Thoth of House - 세계 오컬트 아카이브",
+                "footer-desc": "모든 내용은 학술적 목적으로 제공됩니다."
+            },
+            en: {
+                "search-placeholder": "Enter search terms...",
+                "sidebar-asia": "Asian Occult",
+                "sidebar-europe": "European Occult",
+                "asia-korea": "Korean Folk Religion",
+                "asia-japan": "Japanese Yokai Studies",
+                "asia-china": "Chinese Taoism",
+                "asia-tibet": "Tibetan Tantra",
+                "asia-india": "Indian Tantra",
+                "europe-magic": "Western Magic",
+                "europe-alchemy": "Alchemy",
+                "europe-witch": "Witchcraft",
+                "breadcrumb-home": "Home",
+                "breadcrumb-asia": "Asian Occult",
+                "breadcrumb-china": "Chinese Taoism",
+                "page-title": "Chinese Taoism (道教)",
+                "page-modified": "Last Modified",
+                "page-category": "Category",
+                "page-category-value": "Asian Occult",
+                "toc-title": "Table of Contents",
+                "toc-overview": "1. Overview",
+                "toc-history": "2. History",
+                "toc-beliefs": "3. Core Beliefs",
+                "toc-practices": "4. Practices",
+                "toc-deities": "5. Major Immortals",
+                "footer-title": "Thoth of House - World Occult Archive",
+                "footer-desc": "All content is provided for academic purposes."
+            },
+            ja: {
+                "search-placeholder": "検索語を入力してください...",
+                "sidebar-asia": "アジアのオカルト",
+                "sidebar-europe": "ヨーロッパのオカルト",
+                "asia-korea": "韓国の民間信仰",
+                "asia-japan": "日本の妖怪学",
+                "asia-china": "中国の道教",
+                "asia-tibet": "チベット密教",
+                "asia-india": "インドのタントラ",
+                "europe-magic": "西洋魔法学",
+                "europe-alchemy": "錬金術",
+                "europe-witch": "魔女学",
+                "breadcrumb-home": "ホーム",
+                "breadcrumb-asia": "アジアのオカルト",
+                "breadcrumb-china": "中国の道教",
+                "page-title": "中国の道教 (道教)",
+                "page-modified": "最終更新",
+                "page-category": "カテゴリー",
+                "page-category-value": "アジアのオカルト",
+                "toc-title": "目次",
+                "toc-overview": "1. 概要",
+                "toc-history": "2. 歴史",
+                "toc-beliefs": "3. 核心思想",
+                "toc-practices": "4. 修行法",
+                "toc-deities": "5. 主要な神仙",
+                "footer-title": "トトの家 - 世界オカルトアーカイブ",
+                "footer-desc": "すべてのコンテンツは学術目的で提供されています。"
+            },
+            zh: {
+                "search-placeholder": "输入搜索词...",
+                "sidebar-asia": "亚洲神秘学",
+                "sidebar-europe": "欧洲神秘学",
+                "asia-korea": "韩国民间信仰",
+                "asia-japan": "日本妖怪学",
+                "asia-china": "中国道教",
+                "asia-tibet": "西藏密宗",
+                "asia-india": "印度坦特罗",
+                "europe-magic": "西方魔法学",
+                "europe-alchemy": "炼金术",
+                "europe-witch": "巫术学",
+                "breadcrumb-home": "首页",
+                "breadcrumb-asia": "亚洲神秘学",
+                "breadcrumb-china": "中国道教",
+                "page-title": "中国道教 (道教)",
+                "page-modified": "最后修改",
+                "page-category": "分类",
+                "page-category-value": "亚洲神秘学",
+                "toc-title": "目录",
+                "toc-overview": "1. 概述",
+                "toc-history": "2. 历史",
+                "toc-beliefs": "3. 核心思想",
+                "toc-practices": "4. 修炼方法",
+                "toc-deities": "5. 主要神仙",
+                "footer-title": "托特之家 - 世界神秘学档案馆",
+                "footer-desc": "所有内容仅供学术用途。"
+            }
+        };
+
+        const wikiContent = {
+            ko: `
+                <h2 id="overview">개요</h2>
+                <p>도교(道教, Daoism/Taoism)는 중국의 전통 종교이자 철학 체계로, 기원전 2세기경에 체계화되었다. '도(道, Dao)'를 우주 만물의 근원이자 원리로 보며, 자연과의 조화와 불멸을 추구한다.</p>
+                
+                <p>도교는 노자(老子)의 철학적 도교(道家)에서 시작되어 종교적 도교(道教)로 발전했다. 신선(神仙) 사상, 연단술(煉丹術), 풍수(風水), 부적(符籍) 등 다양한 오컬트 실천을 포함한다.</p>
+
+                <h2 id="history">역사</h2>
+                
+                <h3>초기 발전 (기원전 4-2세기)</h3>
+                <p>노자의 『도덕경(道德經)』과 장자의 『장자(莊子)』가 철학적 기반을 마련했다. 이 시기의 도교는 주로 철학적 사상 체계였다.</p>
+
+                <h3>종교화 (2세기)</h3>
+                <p>후한 시대에 장도릉(張道陵)이 오두미도(五斗米道)를 창시하면서 종교적 조직을 갖추기 시작했다. 신선 사상과 불멸에 대한 추구가 중심이 되었다.</p>
+
+                <h3>황금기 (당-송 시대)</h3>
+                <p>당나라와 송나라 시대에 도교는 전성기를 맞았다. 황제들이 도교를 후원했으며, 수많은 도관(道觀)이 건립되었다.</p>
+
+                <h2 id="beliefs">핵심 사상</h2>
+                
+                <h3>도(道)</h3>
+                <p>우주 만물의 근원이자 운행 원리. 말로 표현할 수 없는 궁극적 실재. 『도덕경』의 첫 구절 "도가도비상도(道可道非常道)" - 말할 수 있는 도는 영원한 도가 아니다.</p>
+
+                <h3>무위자연(無爲自然)</h3>
+                <p>인위적인 노력 없이 자연의 흐름에 따르는 것. 억지로 하지 않으면서도 이루어지는 상태.</p>
+
+                <h3>삼보(三寶)</h3>
+                <ul>
+                    <li><strong>자(慈):</strong> 자비</li>
+                    <li><strong>검(儉):</strong> 검소함</li>
+                    <li><strong>불감위천하선(不敢爲天下先):</strong> 천하에 앞서려 하지 않음</li>
+                </ul>
+
+                <h2 id="practices">수행법</h2>
+                
+                <h3>내단(內丹) - 내적 연금술</h3>
+                <p>호흡법, 명상, 기공을 통해 체내의 기(氣)를 연마하여 불멸의 단약을 만드는 수행. 정(精), 기(氣), 신(神)을 단련한다.</p>
+
+                <h3>외단(外丹) - 외적 연금술</h3>
+                <p>수은, 납, 황 등의 광물질을 배합하여 불로불사의 단약을 만드는 연구. 중국 화학의 기원이 되었으나, 수은 중독 등의 부작용으로 후기에는 내단술이 중시되었다.</p>
+
+                <h3>태극권과 기공</h3>
+                <p>도교의 수행법에서 발전한 심신 수련법. 천천히 흐르는 동작으로 기를 순환시키고 몸과 마음의 조화를 추구한다.</p>
+
+                <h3>부적과 주술</h3>
+                <p>도교 부적(符籙)은 신령의 힘을 빌려 악령을 쫓고 복을 부르는 주술적 도구. 부적에는 복잡한 문자와 그림이 그려진다.</p>
+
+                <h2 id="deities">주요 신선과 신</h2>
+                
+                <h3>삼청(三清) - 최고신</h3>
+                <ul>
+                    <li><strong>원시천존(元始天尊):</strong> 가장 높은 신, 우주의 시작</li>
+                    <li><strong>영보천존(靈寶天尊):</strong> 도를 펼치는 신</li>
+                    <li><strong>도덕천존(道德天尊):</strong> 노자가 신격화된 존재</li>
+                </ul>
+
+                <h3>팔선(八仙)</h3>
+                <p>도교에서 가장 유명한 8명의 신선:</p>
+                <ul>
+                    <li><strong>여동빈(呂洞賓):</strong> 검술의 달인, 학문의 신선</li>
+                    <li><strong>철괴리(鐵拐李):</strong> 지팡이를 짚은 신선, 의술의 달인</li>
+                    <li><strong>하선고(何仙姑):</strong> 유일한 여성 신선</li>
+                    <li><strong>남채화(藍采和):</strong> 음악과 예술의 신선</li>
+                </ul>
+
+                <h3>옥황상제(玉皇上帝)</h3>
+                <p>도교 신들의 황제. 천상과 지상을 통치하며, 민간 신앙에서 가장 널리 숭배되는 신 중 하나.</p>
+
+                <h3>참고문헌</h3>
+                <ul>
+                    <li>老子, 『道德經』</li>
+                    <li>莊子, 『莊子』</li>
+                    <li>葛洪, 『抱朴子』, 4세기</li>
+                    <li>卿希泰, 『中國道教史』, 1988</li>
+                </ul>
+            `,
+            en: `
+                <h2 id="overview">Overview</h2>
+                <p>Taoism (道教, Daoism) is a traditional Chinese religion and philosophical system that was systematized around the 2nd century BCE. It views the "Tao (道, Dao)" as the origin and principle of all things in the universe, pursuing harmony with nature and immortality.</p>
+                
+                <p>Taoism originated from Laozi's philosophical Daoism and developed into religious Taoism. It includes various occult practices such as immortal beliefs, alchemy (煉丹術), feng shui (風水), and talismans (符籍).</p>
+
+                <h2 id="history">History</h2>
+                
+                <h3>Early Development (4-2nd century BCE)</h3>
+                <p>Laozi's "Tao Te Ching" and Zhuangzi's "Zhuangzi" established the philosophical foundation. Taoism during this period was primarily a philosophical thought system.</p>
+
+                <h3>Religionization (2nd century)</h3>
+                <p>During the Later Han dynasty, Zhang Daoling founded the Five Pecks of Rice sect, beginning to establish religious organization. The pursuit of immortality and immortal beliefs became central.</p>
+
+                <h2 id="beliefs">Core Beliefs</h2>
+                
+                <h3>Tao (道)</h3>
+                <p>The origin and operating principle of all things in the universe. The ultimate reality that cannot be expressed in words. The first line of "Tao Te Ching": "The Tao that can be told is not the eternal Tao."</p>
+
+                <h3>Wu Wei (無爲自然)</h3>
+                <p>Following the flow of nature without artificial effort. A state where things are accomplished without forcing.</p>
+
+                <h2 id="practices">Practices</h2>
+                
+                <h3>Internal Alchemy (內丹)</h3>
+                <p>Cultivation through breathing techniques, meditation, and qigong to refine qi within the body to create the elixir of immortality. Training essence (精), qi (氣), and spirit (神).</p>
+
+                <h3>External Alchemy (外丹)</h3>
+                <p>Research to create elixirs of immortality by combining minerals such as mercury, lead, and sulfur. It became the origin of Chinese chemistry, but due to side effects like mercury poisoning, internal alchemy was emphasized in later periods.</p>
+
+                <h2 id="deities">Major Immortals and Deities</h2>
+                
+                <h3>Three Pure Ones (三清)</h3>
+                <ul>
+                    <li><strong>Yuanshi Tianzun:</strong> The highest deity, the beginning of the universe</li>
+                    <li><strong>Lingbao Tianzun:</strong> The deity who spreads the Tao</li>
+                    <li><strong>Daode Tianzun:</strong> The deified form of Laozi</li>
+                </ul>
+
+                <h3>Eight Immortals (八仙)</h3>
+                <p>The most famous eight immortals in Taoism, including Lü Dongbin (master of swordsmanship), Tieguai Li (master of medicine), and He Xiangu (the only female immortal).</p>
+            `,
+            ja: `
+                <h2 id="overview">概要</h2>
+                <p>道教(道教、Daoism/Taoism)は中国の伝統宗教であり哲学体系で、紀元前2世紀頃に体系化されました。「道(道、Dao)」を宇宙万物の根源かつ原理とみなし、自然との調和と不老不死を追求します。</p>
+                
+                <p>道教は老子の哲学的道教(道家)から始まり、宗教的道教(道教)へと発展しました。神仙思想、錬丹術、風水、符籍など様々なオカルト実践を含みます。</p>
+
+                <h2 id="history">歴史</h2>
+                
+                <h3>初期発展(紀元前4-2世紀)</h3>
+                <p>老子の『道徳経』と荘子の『荘子』が哲学的基盤を築きました。この時期の道教は主に哲学的思想体系でした。</p>
+
+                <h3>宗教化(2世紀)</h3>
+                <p>後漢時代に張道陵が五斗米道を創始し、宗教組織を整え始めました。神仙思想と不老不死の追求が中心となりました。</p>
+
+                <h2 id="beliefs">核心思想</h2>
+                
+                <h3>道(道)</h3>
+                <p>宇宙万物の根源かつ運行原理。言葉で表現できない究極の実在。『道徳経』の最初の一節「道可道非常道」 - 語ることのできる道は永遠の道ではない。</p>
+
+                <h3>無為自然</h3>
+                <p>人為的な努力なしに自然の流れに従うこと。無理に行わずとも成し遂げられる状態。</p>
+
+                <h2 id="practices">修行法</h2>
+                
+                <h3>内丹 - 内的錬金術</h3>
+                <p>呼吸法、瞑想、気功を通じて体内の気を練磨し不老不死の丹薬を作る修行。精、気、神を鍛錬します。</p>
+
+                <h3>外丹 - 外的錬金術</h3>
+                <p>水銀、鉛、硫黄などの鉱物質を配合して不老不死の丹薬を作る研究。中国化学の起源となりましたが、水銀中毒などの副作用により後期には内丹術が重視されました。</p>
+
+                <h2 id="deities">主要な神仙と神</h2>
+                
+                <h3>三清 - 最高神</h3>
+                <ul>
+                    <li><strong>元始天尊:</strong> 最も高い神、宇宙の始まり</li>
+                    <li><strong>霊宝天尊:</strong> 道を広める神</li>
+                    <li><strong>道徳天尊:</strong> 老子が神格化された存在</li>
+                </ul>
+
+                <h3>八仙</h3>
+                <p>道教で最も有名な8人の神仙。呂洞賓(剣術の達人)、鉄拐李(医術の達人)、何仙姑(唯一の女性神仙)などが含まれます。</p>
+            `,
+            zh: `
+                <h2 id="overview">概述</h2>
+                <p>道教(道教、Daoism/Taoism)是中国的传统宗教和哲学体系,大约在公元前2世纪系统化。将"道(道、Dao)"视为宇宙万物的根源和原理,追求与自然的和谐与长生不老。</p>
+                
+                <p>道教起源于老子的哲学道家,发展成为宗教道教。包括神仙思想、炼丹术、风水、符籍等各种神秘实践。</p>
+
+                <h2 id="history">历史</h2>
+                
+                <h3>早期发展(公元前4-2世纪)</h3>
+                <p>老子的《道德经》和庄子的《庄子》奠定了哲学基础。这一时期的道教主要是哲学思想体系。</p>
+
+                <h3>宗教化(2世纪)</h3>
+                <p>东汉时期,张道陵创立五斗米道,开始建立宗教组织。神仙思想和追求长生不老成为中心。</p>
+
+                <h2 id="beliefs">核心思想</h2>
+                
+                <h3>道</h3>
+                <p>宇宙万物的根源和运行原理。无法用语言表达的终极实在。《道德经》首句"道可道非常道" - 可以说出来的道不是永恒的道。</p>
+
+                <h3>无为自然</h3>
+                <p>顺应自然之流而不加人为努力。不强求而自然成就的状态。</p>
+
+                <h2 id="practices">修炼方法</h2>
+                
+                <h3>内丹 - 内炼金术</h3>
+                <p>通过呼吸法、冥想、气功来炼化体内之气以制作长生不老之丹药的修行。锻炼精、气、神。</p>
+
+                <h3>外丹 - 外炼金术</h3>
+                <p>配合水银、铅、硫磺等矿物质制作长生不老丹药的研究。成为中国化学的起源,但由于水银中毒等副作用,后期更重视内丹术。</p>
+
+                <h2 id="deities">主要神仙和神</h2>
+                
+                <h3>三清 - 最高神</h3>
+                <ul>
+                    <li><strong>元始天尊:</strong> 最高之神,宇宙之始</li>
+                    <li><strong>灵宝天尊:</strong> 传道之神</li>
+                    <li><strong>道德天尊:</strong> 老子神格化的存在</li>
+                </ul>
+
+                <h3>八仙</h3>
+                <p>道教中最著名的八位神仙。包括吕洞宾(剑术大师)、铁拐李(医术大师)、何仙姑(唯一女性神仙)等。</p>
+            `
+        };
+
+        let currentLang = 'ko';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+
+            if (wikiContent[lang]) {
+                document.getElementById('wiki-content').innerHTML = wikiContent[lang];
+            }
+
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                changeLanguage(this.dataset.lang);
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'ko';
+            currentLang = savedLang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === savedLang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
