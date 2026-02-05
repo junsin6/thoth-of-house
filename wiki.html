@@ -18,7 +18,6 @@
             line-height: 1.6;
         }
 
-        /* 헤더 */
         header {
             background-color: #343434;
             border-bottom: 2px solid #EFEFEF;
@@ -95,7 +94,6 @@
             color: #343434;
         }
 
-        /* 메인 컨테이너 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -104,7 +102,6 @@
             gap: 40px;
         }
 
-        /* 사이드바 */
         .sidebar {
             width: 250px;
             flex-shrink: 0;
@@ -144,7 +141,12 @@
             font-weight: bold;
         }
 
-        /* 콘텐츠 영역 */
+        .sidebar-list li a {
+            color: #EFEFEF;
+            text-decoration: none;
+            display: block;
+        }
+
         .content {
             flex: 1;
             min-width: 0;
@@ -245,7 +247,6 @@
             text-decoration: none;
         }
 
-        /* 푸터 */
         footer {
             border-top: 1px solid #555;
             padding: 40px 0;
@@ -296,24 +297,24 @@
             <div class="sidebar-section">
                 <div class="sidebar-title" data-i18n="sidebar-category">카테고리</div>
                 <ul class="sidebar-list">
-                    <li class="active" data-i18n="cat-asia">아시아 오컬트</li>
-                    <li data-i18n="cat-europe">유럽 오컬트</li>
-                    <li data-i18n="cat-americas">아메리카 오컬트</li>
-                    <li data-i18n="cat-africa">아프리카/중동</li>
-                    <li data-i18n="cat-myths">신화/전설</li>
-                    <li data-i18n="cat-magic">마법 체계</li>
-                    <li data-i18n="cat-ritual">의식/제례</li>
+                    <li class="active"><a href="wiki.html" data-i18n="cat-asia">아시아 오컬트</a></li>
+                    <li><a href="europe-magic.html" data-i18n="cat-europe">유럽 오컬트</a></li>
+                    <li><a href="#" data-i18n="cat-americas">아메리카 오컬트</a></li>
+                    <li><a href="#" data-i18n="cat-africa">아프리카/중동</a></li>
+                    <li><a href="#" data-i18n="cat-myths">신화/전설</a></li>
+                    <li><a href="#" data-i18n="cat-magic">마법 체계</a></li>
+                    <li><a href="#" data-i18n="cat-ritual">의식/제례</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
                 <div class="sidebar-title" data-i18n="sidebar-asia">아시아 세부</div>
                 <ul class="sidebar-list">
-                    <li data-i18n="asia-korea">한국 민간신앙</li>
-                    <li data-i18n="asia-japan">일본 요괴학</li>
-                    <li data-i18n="asia-china">중국 도교</li>
-                    <li data-i18n="asia-tibet">티베트 밀교</li>
-                    <li data-i18n="asia-india">인도 탄트라</li>
+                    <li class="active"><a href="wiki.html" data-i18n="asia-korea">한국 민간신앙</a></li>
+                    <li><a href="japan-yokai.html" data-i18n="asia-japan">일본 요괴학</a></li>
+                    <li><a href="china-taoism.html" data-i18n="asia-china">중국 도교</a></li>
+                    <li><a href="#" data-i18n="asia-tibet">티베트 밀교</a></li>
+                    <li><a href="#" data-i18n="asia-india">인도 탄트라</a></li>
                 </ul>
             </div>
         </aside>
@@ -355,7 +356,6 @@
     </div>
 
     <script>
-        // 번역 데이터
         const translations = {
             ko: {
                 "search-placeholder": "검색어를 입력하세요...",
@@ -410,266 +410,4 @@
                 "breadcrumb-korea": "Korean Folk Religion",
                 "page-title": "Korean Folk Religion",
                 "page-modified": "Last Modified",
-                "page-category-label": "Category",
-                "page-category-value": "Asian Occult",
-                "toc-title": "Table of Contents",
-                "toc-overview": "1. Overview",
-                "toc-history": "2. History",
-                "toc-types": "3. Major Types",
-                "toc-practices": "4. Rituals and Practices",
-                "toc-references": "5. References",
-                "footer-title": "Thoth of House - World Occult Archive",
-                "footer-desc": "All content is provided for academic purposes."
-            },
-            ja: {
-                "search-placeholder": "検索語を入力してください...",
-                "sidebar-category": "カテゴリー",
-                "sidebar-asia": "アジアの詳細",
-                "cat-asia": "アジアのオカルト",
-                "cat-europe": "ヨーロッパのオカルト",
-                "cat-americas": "アメリカのオカルト",
-                "cat-africa": "アフリカ/中東",
-                "cat-myths": "神話と伝説",
-                "cat-magic": "魔法体系",
-                "cat-ritual": "儀式/祭礼",
-                "asia-korea": "韓国の民間信仰",
-                "asia-japan": "日本の妖怪学",
-                "asia-china": "中国の道教",
-                "asia-tibet": "チベット密教",
-                "asia-india": "インドのタントラ",
-                "breadcrumb-home": "ホーム",
-                "breadcrumb-asia": "アジアのオカルト",
-                "breadcrumb-korea": "韓国の民間信仰",
-                "page-title": "韓国の民間信仰",
-                "page-modified": "最終更新",
-                "page-category-label": "カテゴリー",
-                "page-category-value": "アジアのオカルト",
-                "toc-title": "目次",
-                "toc-overview": "1. 概要",
-                "toc-history": "2. 歴史",
-                "toc-types": "3. 主要なタイプ",
-                "toc-practices": "4. 儀式と実践",
-                "toc-references": "5. 参考文献",
-                "footer-title": "トトの家 - 世界オカルトアーカイブ",
-                "footer-desc": "すべてのコンテンツは学術目的で提供されています。"
-            },
-            zh: {
-                "search-placeholder": "输入搜索词...",
-                "sidebar-category": "分类",
-                "sidebar-asia": "亚洲细分",
-                "cat-asia": "亚洲神秘学",
-                "cat-europe": "欧洲神秘学",
-                "cat-americas": "美洲神秘学",
-                "cat-africa": "非洲/中东",
-                "cat-myths": "神话传说",
-                "cat-magic": "魔法体系",
-                "cat-ritual": "仪式/典礼",
-                "asia-korea": "韩国民间信仰",
-                "asia-japan": "日本妖怪学",
-                "asia-china": "中国道教",
-                "asia-tibet": "西藏密宗",
-                "asia-india": "印度坦特罗",
-                "breadcrumb-home": "首页",
-                "breadcrumb-asia": "亚洲神秘学",
-                "breadcrumb-korea": "韩国民间信仰",
-                "page-title": "韩国民间信仰",
-                "page-modified": "最后修改",
-                "page-category-label": "分类",
-                "page-category-value": "亚洲神秘学",
-                "toc-title": "目录",
-                "toc-overview": "1. 概述",
-                "toc-history": "2. 历史",
-                "toc-types": "3. 主要类型",
-                "toc-practices": "4. 仪式与实践",
-                "toc-references": "5. 参考文献",
-                "footer-title": "托特之家 - 世界神秘学档案馆",
-                "footer-desc": "所有内容仅供学术用途。"
-            }
-        };
-
-        // 위키 콘텐츠 (언어별)
-        const wikiContent = {
-            ko: `
-                <h2 id="overview">개요</h2>
-                <p>한국 민간신앙은 한반도에서 전승되어 온 토착 종교 및 신앙 체계를 의미한다. 불교, 유교, 도교 등 외래 종교의 영향을 받았지만, 독자적인 무속 전통과 자연 숭배 사상을 중심으로 발전해왔다.</p>
-                <p>이러한 신앙 체계는 샤머니즘적 요소가 강하며, 인간과 신령 세계의 교감을 중시한다. 무당(巫堂)을 통한 굿이 대표적인 의례 형태이다.</p>
-
-                <h2 id="history">역사</h2>
-                <p>한국 민간신앙의 기원은 선사시대로 거슬러 올라간다. 고대 부족 사회에서는 하늘과 자연에 대한 숭배가 주를 이뤘으며, 삼국시대를 거치며 체계화되었다.</p>
-
-                <h3>고대 시대</h3>
-                <p>단군신화에 나타난 천신 숭배와 곰 토템 신앙은 한국 민간신앙의 원형적 모습을 보여준다.</p>
-
-                <h2 id="types">주요 유형</h2>
-                <h3>자연 숭배</h3>
-                <ul>
-                    <li><strong>산신령 신앙:</strong> 산을 지키는 신에 대한 숭배</li>
-                    <li><strong>용왕 신앙:</strong> 바다와 물을 관장하는 용신에 대한 믿음</li>
-                    <li><strong>성황신 신앙:</strong> 마을을 수호하는 수호신</li>
-                </ul>
-
-                <h2 id="practices">의례와 실천</h2>
-                <p>무당이 주관하는 종교 의례로, 신을 모시고 소원을 빌거나 액운을 물리치는 목적으로 행해진다.</p>
-
-                <h2 id="references">참고문헌</h2>
-                <ul>
-                    <li>김태곤, 『한국무속연구』, 집문당, 1981</li>
-                    <li>최길성, 『한국 무속의 이해』, 예전사, 1994</li>
-                </ul>
-            `,
-            en: `
-                <h2 id="overview">Overview</h2>
-                <p>Korean folk religion refers to the indigenous religious and belief systems that have been transmitted on the Korean Peninsula. While influenced by foreign religions such as Buddhism, Confucianism, and Taoism, it has developed centered on unique shamanic traditions and nature worship.</p>
-                <p>This belief system has strong shamanistic elements and emphasizes communication between humans and the spirit world. Gut ceremonies led by mudang (shamans) are representative ritual forms.</p>
-
-                <h2 id="history">History</h2>
-                <p>The origins of Korean folk religion date back to prehistoric times. In ancient tribal societies, worship of heaven and nature was predominant, and it became systematized through the Three Kingdoms period.</p>
-
-                <h3>Ancient Period</h3>
-                <p>The worship of heavenly deities and bear totem beliefs shown in the Dangun myth represent the archetypal form of Korean folk religion.</p>
-
-                <h2 id="types">Major Types</h2>
-                <h3>Nature Worship</h3>
-                <ul>
-                    <li><strong>Mountain Spirit Belief:</strong> Worship of deities guarding mountains</li>
-                    <li><strong>Dragon King Belief:</strong> Faith in dragon deities governing seas and waters</li>
-                    <li><strong>Village Guardian Belief:</strong> Guardian spirits protecting villages</li>
-                </ul>
-
-                <h2 id="practices">Rituals and Practices</h2>
-                <p>Religious ceremonies led by shamans, performed to serve deities, make wishes, or ward off misfortune.</p>
-
-                <h2 id="references">References</h2>
-                <ul>
-                    <li>Kim Tae-gon, Korean Shamanism Studies, Jibmundang, 1981</li>
-                    <li>Choi Gil-seong, Understanding Korean Shamanism, Yejeonseo, 1994</li>
-                </ul>
-            `,
-            ja: `
-                <h2 id="overview">概要</h2>
-                <p>韓国の民間信仰とは、朝鮮半島で伝承されてきた土着の宗教および信仰体系を意味します。仏教、儒教、道教などの外来宗教の影響を受けましたが、独自のシャーマニズム伝統と自然崇拝思想を中心に発展してきました。</p>
-                <p>この信仰体系はシャーマニズム的要素が強く、人間と神霊世界との交感を重視します。巫堂（ムーダン）によるクッが代表的な儀礼形態です。</p>
-
-                <h2 id="history">歴史</h2>
-                <p>韓国民間信仰の起源は先史時代にさかのぼります。古代部族社会では天と自然への崇拝が主流で、三国時代を経て体系化されました。</p>
-
-                <h3>古代時代</h3>
-                <p>檀君神話に現れる天神崇拝と熊トーテム信仰は、韓国民間信仰の原型的な姿を示しています。</p>
-
-                <h2 id="types">主要なタイプ</h2>
-                <h3>自然崇拝</h3>
-                <ul>
-                    <li><strong>山神霊信仰：</strong> 山を守る神への崇拝</li>
-                    <li><strong>龍王信仰：</strong> 海と水を司る龍神への信仰</li>
-                    <li><strong>城隍神信仰：</strong> 村を守護する守護神</li>
-                </ul>
-
-                <h2 id="practices">儀式と実践</h2>
-                <p>巫堂が主宰する宗教儀礼で、神を祀り願いを祈ったり厄を払う目的で行われます。</p>
-
-                <h2 id="references">参考文献</h2>
-                <ul>
-                    <li>金泰坤、『韓国巫俗研究』、集文堂、1981</li>
-                    <li>崔吉城、『韓国巫俗の理解』、礼泉社、1994</li>
-                </ul>
-            `,
-            zh: `
-                <h2 id="overview">概述</h2>
-                <p>韩国民间信仰是指在朝鲜半岛传承的本土宗教和信仰体系。虽然受到佛教、儒教、道教等外来宗教的影响，但以独特的萨满传统和自然崇拜思想为中心发展。</p>
-                <p>这种信仰体系具有强烈的萨满主义元素，重视人类与神灵世界的交流。由巫堂主持的萨满仪式是代表性的仪式形式。</p>
-
-                <h2 id="history">历史</h2>
-                <p>韩国民间信仰的起源可以追溯到史前时代。在古代部落社会中，对天空和自然的崇拜占主导地位，经过三国时期逐渐系统化。</p>
-
-                <h3>古代时期</h3>
-                <p>檀君神话中出现的天神崇拜和熊图腾信仰展示了韩国民间信仰的原型形态。</p>
-
-                <h2 id="types">主要类型</h2>
-                <h3>自然崇拜</h3>
-                <ul>
-                    <li><strong>山神信仰：</strong> 对守护山的神灵的崇拜</li>
-                    <li><strong>龙王信仰：</strong> 对掌管海洋和水的龙神的信仰</li>
-                    <li><strong>城隍神信仰：</strong> 守护村庄的保护神</li>
-                </ul>
-
-                <h2 id="practices">仪式与实践</h2>
-                <p>由萨满主持的宗教仪式，旨在侍奉神灵、祈愿或驱除厄运。</p>
-
-                <h2 id="references">参考文献</h2>
-                <ul>
-                    <li>金泰坤，《韩国巫俗研究》，集文堂，1981</li>
-                    <li>崔吉城，《韩国巫俗的理解》，礼泉社，1994</li>
-                </ul>
-            `
-        };
-
-        let currentLang = 'ko';
-
-        // 언어 변경 함수
-        function changeLanguage(lang) {
-            currentLang = lang;
-            
-            // 텍스트 번역
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-
-            // placeholder 번역
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-                const key = element.getAttribute('data-i18n-placeholder');
-                if (translations[lang] && translations[lang][key]) {
-                    element.placeholder = translations[lang][key];
-                }
-            });
-
-            // 위키 콘텐츠 변경
-            if (wikiContent[lang]) {
-                document.getElementById('wiki-content').innerHTML = wikiContent[lang];
-            }
-
-            document.documentElement.lang = lang;
-            localStorage.setItem('preferredLanguage', lang);
-        }
-
-        // 홈으로 이동
-        function goHome() {
-            window.location.href = 'index.html';
-        }
-
-        // 언어 버튼 클릭 이벤트
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                changeLanguage(this.dataset.lang);
-            });
-        });
-
-        // 페이지 로드시
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'ko';
-            currentLang = savedLang;
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.lang === savedLang) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            changeLanguage(savedLang);
-        });
-
-        // 사이드바 네비게이션
-        document.querySelectorAll('.sidebar-list li').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.sidebar-list li').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
-</body>
-</html>
+                "page-category-l
